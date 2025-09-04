@@ -1,0 +1,9 @@
+google-genai
+langgraph
+langchain-core
+requests
+pylint
+pytest
+pytest-cov
+smtplib-ssl
+python-dotenv
