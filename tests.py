@@ -143,10 +143,10 @@ class OrderProcessor:
 
 def test_review_state_management():
     """Test 5: Test review state creation and management"""
-    from review_state import create_review_state, update_stage, add_email_sent
+    from parallel_state import create_parallel_review_state, update_parallel_stage, add_parallel_email_sent
     
     # Create review state
-    state = create_review_state("testuser", "testrepo", 123)
+    state = create_parallel_review_state("testuser", "testrepo", 123)
     
     assert state["review_id"].startswith("REV-"), "Invalid review ID format"
     assert state["repo_owner"] == "testuser", "Incorrect repo owner"
@@ -155,11 +155,11 @@ def test_review_state_management():
     assert state["stage"] == "started", "Incorrect initial stage"
     
     # Test stage update
-    updated_state = update_stage(state, "analyzing")
+    updated_state = update_parallel_stage(state, "analyzing")
     assert updated_state["stage"] == "analyzing", "Stage not updated correctly"
     
     # Test email tracking
-    email_state = add_email_sent(state, "test_email")
+    email_state = add_parallel_email_sent(state, "test_email")
     assert len(email_state["emails_sent"]) == 1, "Email not tracked correctly"
     assert email_state["emails_sent"][0]["type"] == "test_email", "Email type not tracked correctly"
     
